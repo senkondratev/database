@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>roomInsertPage</title>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+</head>
+<body>
+    <div>
+        <form method="post" action="/insert/room">
+            <select name="buildingId">
+                {{#buildings}}
+                    <option value={{buildingId}}>{{buildingId}} id здания</option>
+                {{/buildings}}
+            </select>>
+            <input name="profit" type="number" max="100000" placeholder="profit">
+            <input name="floor" type="number" min="1" max="5" width="200" placeholder="floor">
+            <input name="capacity" type="number" min="1" max="4" width="200" placeholder="capacity">
+            <button type="submit">ok</button>
+        </form>
+    </div>
+    <div>
+        These are our rooms
+    </div>
+    {{#rooms}}
+        {{roomId}}
+        {{buildingId}} idBuildinga
+        {{isEmpty}}
+        {{roomProfit}}
+        {{roomOrdersCount}}
+        {{roomFloor}}
+        {{roomCapacity}}
+        {{roomCurrentGuestCount}}
+        <br>
+    {{/rooms}}
+</body>
+</html>

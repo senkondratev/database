@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>buildingInsertPage</title>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+</head>
+<body>
+    <div>
+        <form method="post" action="/insert/building">
+            <input type="number" name = "lvl" min="1" max="5" placeholder="число звезд">
+            <button type="submit">ok</button>
+        </form>
+    </div>
+    <div>
+        This is our buildings
+    </div>
+    {{#buildings}}
+        {{buildingId}}
+        {{level}}
+        <br>
+    {{/buildings}}
+</body>
+</html>
