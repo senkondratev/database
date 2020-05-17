@@ -1,5 +1,6 @@
 package Database.Domain;
 
+import org.springframework.stereotype.Indexed;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import javax.persistence.*;
