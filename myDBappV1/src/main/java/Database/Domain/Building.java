@@ -1,6 +1,7 @@
 package Database.Domain;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Building {
@@ -8,6 +9,18 @@ public class Building {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int buildingId;
+
+    @OneToMany(fetch = FetchType.LAZY, orphanRemoval = true, cascade = {CascadeType.REMOVE})
+    @JoinColumn(name = "buildingId")
+    private List<Room> rooms;
+
+    @OneToMany(fetch = FetchType.LAZY, orphanRemoval = true, cascade = {CascadeType.REMOVE})
+    @JoinColumn(name = "buildingId")
+    private List<Reservation> reservations;
+
+    @OneToMany(fetch = FetchType.LAZY, orphanRemoval = true, cascade = {CascadeType.REMOVE})
+    @JoinColumn(name = "buildingId")
+    private List<Service> services;
 
     private int level;
 

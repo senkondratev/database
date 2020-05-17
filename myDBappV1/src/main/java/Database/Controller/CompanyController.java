@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+
 import java.util.Map;
 
 @Controller
@@ -24,13 +25,13 @@ public class CompanyController {
     }
 
     @PostMapping("/insert/company")
-    public String addCompany(@RequestParam String name, Map<String, Object> model){
-        Company tmpCompany = new Company(name);
-        companyRepository.save(tmpCompany);
+    public String addCompany(@RequestParam String name,Map<String, Object> model){
+            Company tmpCompany = new Company(name);
+            companyRepository.save(tmpCompany);
 
-        Iterable<Company> it = companyRepository.findAll();
-        model.put("companies", it);
+            Iterable<Company> it = companyRepository.findAll();
+            model.put("companies", it);
 
-        return "companyInsertPage";
+            return "companyInsertPage";
     }
 }

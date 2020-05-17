@@ -1,19 +1,24 @@
 package Database.Domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.sql.Date;
+import java.util.List;
 
 @Entity
 public class Client {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int clientId;
+
+    @OneToMany(fetch = FetchType.EAGER, orphanRemoval = true, cascade = {CascadeType.REMOVE})
+    @JoinColumn(name = "clientId")
+    private List<Guest> guests;
+
     private String clientName;
     private String clientSurname;
     private Date firstAppearance;
+
+
 
     public Client() {
     }

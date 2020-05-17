@@ -1,9 +1,7 @@
 package Database.Domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Company {
@@ -13,9 +11,16 @@ public class Company {
 
     private String companyName;
 
+    @OneToMany(fetch = FetchType.LAZY, orphanRemoval = true, cascade = {CascadeType.REMOVE})
+    @JoinColumn(name = "companyId")
+    private List<Contract> contract;
+
+    @OneToMany(fetch = FetchType.LAZY, orphanRemoval = true, cascade = {CascadeType.REMOVE})
+    @JoinColumn(name = "companyId")
+    private List<Guest> guests;
+
     public Company() {
     }
-
     public Company(String name) {
         companyName = name;
     }

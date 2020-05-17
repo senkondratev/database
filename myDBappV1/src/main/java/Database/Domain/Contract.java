@@ -1,6 +1,7 @@
 package Database.Domain;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Contract {
@@ -11,6 +12,10 @@ public class Contract {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "companyId", referencedColumnName = "companyId")
     private Company company;
+
+    @OneToMany(fetch = FetchType.EAGER, orphanRemoval = true, cascade = {CascadeType.REMOVE})
+    @JoinColumn(name = "contractId")
+    private List<Bonus> bonuses;
 
     public Contract() {
     }

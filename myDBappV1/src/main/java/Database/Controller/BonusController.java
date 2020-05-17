@@ -24,6 +24,7 @@ public class BonusController {
 
     public void createIterators(Map<String, Object> model){
         Iterable<Bonus> itBonus = bonusRepository.findAll();
+        //Iterable<Bonus> itBonus = bonusRepository.findByContract_Company_CompanyName("NSU");
         model.put("bonuses", itBonus);
 
         Iterable<Contract> itContract = contractRepository.findAll();

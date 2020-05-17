@@ -4,6 +4,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.util.List;
 
 @Entity
 public class Reservation {
@@ -14,6 +15,10 @@ public class Reservation {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "buildingId")
     private Building building;
+
+    @OneToMany(fetch = FetchType.EAGER, orphanRemoval =  true, cascade = {CascadeType.REMOVE})
+    @JoinColumn(name = "reservationId")
+    private List<Guest> guests;
 
     private Date startDate;
     private Date endDate;
