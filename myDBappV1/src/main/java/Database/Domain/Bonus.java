@@ -1,6 +1,8 @@
 package Database.Domain;
 
 import javax.persistence.*;
+import java.sql.Date;
+import java.util.Calendar;
 
 @Entity
 public class Bonus {
