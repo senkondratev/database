@@ -61,37 +61,19 @@ public class GuestController {
                            @RequestParam int roomId,
                            @RequestParam boolean reviewType,
                            @RequestParam String review,
-                           @RequestParam boolean flag,
                            Map<String, Object> model){
         Room tmpRoom = roomRepository.findByRoomId(roomId);
-        if((tmpRoom.getRoomCurrentGuestCount() < tmpRoom.getRoomCapacity())&&(tmpRoom.isEmpty())) {
 
-            Reservation tmpReservation = reservationRepository.findByReservationId(reservationId);
-            Company tmpCompany = companyRepository.findByCompanyId(companyId);
-            Client tmpClient = clientRepository.findByClientId(clientId);
+        Reservation tmpReservation = reservationRepository.findByReservationId(reservationId);
+        Company tmpCompany = companyRepository.findByCompanyId(companyId);
+        Client tmpClient = clientRepository.findByClientId(clientId);
 
-            //манипуляции с комнатой
-            int curGuestCount = tmpRoom.getRoomCurrentGuestCount()+1;
-            tmpRoom.setRoomCurrentGuestCount(curGuestCount);
-            if(curGuestCount == tmpRoom.getRoomCapacity()){
-                tmpRoom.setEmpty(false);
-            }
-            if (flag){
-                tmpRoom.setEmpty(false);
-            }
-            //конец манипуляций с комнатой
+        Guest tmpGuest = new Guest(tmpReservation, tmpCompany, tmpClient, tmpRoom, reviewType, review);
+        guestRepository.save(tmpGuest);
 
-            Guest tmpGuest = new Guest(tmpReservation, tmpCompany, tmpClient, tmpRoom, reviewType, review);
-            guestRepository.save(tmpGuest);
+        createIterators(model, "everything is ok");
 
-            createIterators(model, "everything is ok");
-
-            return "guestInsertPage";
-        }
-        else {
-            createIterators(model,"room is already full or notEmpty");
-
-            return "guestInsertPage";
+        return "guestInsertPage";
         }
     }
-}
+

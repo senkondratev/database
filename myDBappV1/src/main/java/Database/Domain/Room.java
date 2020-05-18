@@ -17,17 +17,12 @@ public class Room {
     @JoinColumn(name = "roomId")
     private List<Guest> guests;
 
-    private boolean isEmpty = true;
 
     private int roomProfit;//прибыль за день аренды.
-
-    private int roomOrdersCount = 0;
 
     private int roomFloor;
 
     private int roomCapacity;
-
-    private int roomCurrentGuestCount = 0;
 
     public Room() {
     }
@@ -49,13 +44,6 @@ public class Room {
 
 
     //геттеры полей этого класса
-    public int getRoomCurrentGuestCount() {
-        return roomCurrentGuestCount;
-    }
-
-    public void setRoomCurrentGuestCount(int roomCurrentGuestCount) {
-        this.roomCurrentGuestCount = roomCurrentGuestCount;
-    }
 
     public int getRoomCapacity() {
         return roomCapacity;
@@ -73,28 +61,12 @@ public class Room {
         this.roomFloor = roomFloor;
     }
 
-    public int getRoomOrdersCount() {
-        return roomOrdersCount;
-    }
-
-    public void setRoomOrdersCount(int roomOrdersCount) {
-        this.roomOrdersCount = roomOrdersCount;
-    }
-
     public int getRoomProfit() {
         return roomProfit;
     }
 
     public void setRoomProfit(int roomProfit) {
         this.roomProfit = roomProfit;
-    }
-
-    public boolean isEmpty() {
-        return isEmpty;
-    }
-
-    public void setEmpty(boolean empty) {
-        isEmpty = empty;
     }
 
     public Building getBuilding() {
