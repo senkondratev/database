@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>roomInsertPage</title>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+</head>
+<body>
+<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+<script type="text/javascript">$(document).on("change", "#buildingSelect", function () {
+    var selected = $(this).val();
+    $.get("/insert/roomInsertSupportController",
+            {
+                selectedBuildingId : selected
+            }, function(html){
+                jQuery('#floorSelect').html(html);
+            });
+})
+</script>
+    <div>
+        <form method="post" action="/insert/room">
+            <select name="buildingId" id="buildingSelect">
+                <option disabled selected> Выберите здание</option>
+                {{#buildings}}
+                    <option value={{buildingId}}>{{buildingId}} id здания</option>
+                {{/buildings}}
+            </select>
+            <input name="profit" type="number" max="100000" placeholder="profit">
+            <div id="floorSelect">
+            <input name="floor" type="number" min="1" max="5" width="200" placeholder="floor">
+            </div>
+            <input name="capacity" type="number" min="1" max="400" width="200" placeholder="capacity">
+            <button type="submit">ok</button>
+        </form>
+    </div>
+    <div>
+        These are our rooms
+    </div>
+    {{#rooms}}
+        {{roomId}}
+        {{buildingId}} idBuildinga
+        {{roomProfit}}
+        {{roomFloor}}
+        {{roomCapacity}}
+        <br>
+    {{/rooms}}
+</body>
+</html>
