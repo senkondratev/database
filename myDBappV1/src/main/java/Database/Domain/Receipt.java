@@ -24,6 +24,14 @@ public class Receipt {
         service = s;
     }
 
+    //группа геттеров для "красивого вывода" - геттеры "чужих" полей
+    public String getServiceName(){
+        return service.getServiceName();
+    }
+    public int getGuestId(){
+        return guest.getGuestId();
+    }
+
     //геттеры полей этого класса
     public Service getService() {
         return service;

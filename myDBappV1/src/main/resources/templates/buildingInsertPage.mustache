@@ -8,6 +8,7 @@
     <div>
         <form method="post" action="/insert/building">
             <input type="number" name = "lvl" min="1" max="5" placeholder="число звезд">
+            <input name="height" type="number" min="1" max="5">
             <button type="submit">ok</button>
         </form>
     </div>
@@ -17,6 +18,7 @@
     {{#buildings}}
         {{buildingId}}
         {{level}}
+        {{buildingHeight}}
         <br>
     {{/buildings}}
 </body>

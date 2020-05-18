@@ -49,4 +49,13 @@ public class RoomController {
 
         return "roomInsertPage";
     }
+
+    @GetMapping("/insert/roomTEST")
+    public String roomTEST(int selectedBuildingId, Map<String, Object> model){
+        Building tmpBuilding  = buildingRepository.findByBuildingId(selectedBuildingId);
+        int h = tmpBuilding.getBuildingHeight();
+        model.put("max",h);
+
+        return "roomHELPPage";
+    }
 }

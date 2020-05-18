@@ -24,16 +24,28 @@ public class Building {
 
     private int level;
 
+    private int buildingHeight;
+
     public Building() {
     }
 
-    public Building(int lvl) {
+    public Building(int lvl, int height) {
+
         level = lvl;
+        buildingHeight = height;
     }
 
     //геттеры полей этого класса
     public int getLevel() {
         return level;
+    }
+
+    public int getBuildingHeight() {
+        return buildingHeight;
+    }
+
+    public void setBuildingHeight(int buildingHeight) {
+        this.buildingHeight = buildingHeight;
     }
 
     public void setLevel(int level) {

@@ -24,8 +24,10 @@ public class BuildingController {
     }
 
     @PostMapping("/insert/building")
-    public String addBuilding(@RequestParam int lvl, Map<String, Object> model){
-        Building tmpBuilding = new Building(lvl);
+    public String addBuilding(@RequestParam int lvl,
+                              @RequestParam int height,
+                              Map<String, Object> model){
+        Building tmpBuilding = new Building(lvl, height);
         buildingRepository.save(tmpBuilding);
 
         Iterable<Building> it = buildingRepository.findAll();

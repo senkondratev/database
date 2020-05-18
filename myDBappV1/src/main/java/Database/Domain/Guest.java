@@ -1,6 +1,7 @@
 package Database.Domain;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Guest {
@@ -23,6 +24,10 @@ public class Guest {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "roomId")
     private Room room;
+
+    @OneToMany(fetch = FetchType.EAGER, orphanRemoval = true, cascade = {CascadeType.REMOVE})
+    @JoinColumn(name = "guestId")
+    private List<Receipt> receipts;
 
     private boolean reviewType;
 
@@ -52,6 +57,10 @@ public class Guest {
     }
     public int getRoomId(){
         return room.getRoomId();
+    }
+    public int getBuildingId()
+    {
+        return reservation.getBuildingId();
     }
 
     //геттеры полей этого класса

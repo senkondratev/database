@@ -1,6 +1,7 @@
 package Database.Domain;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Service {
@@ -11,6 +12,10 @@ public class Service {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "buildingId")
     private Building building;
+
+    @OneToMany(fetch = FetchType.EAGER, orphanRemoval = true, cascade = {CascadeType.REMOVE})
+    @JoinColumn(name = "serviceId")
+    private List<Receipt> receipts;
 
     private int servicePrice;
 
