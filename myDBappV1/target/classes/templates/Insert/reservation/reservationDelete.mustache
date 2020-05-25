@@ -1,0 +1,23 @@
+<table>
+    <caption>Брони</caption>
+    <tr>
+        <th>ID брони</th>
+        <th>ID здания</th>
+        <th>Число звезд здания</th>
+        <th>Дата начала</th>
+        <th>Дата окончания</th>
+        <th>Удалить</th>
+    </tr>
+    {{#reservations}}
+        <tr>
+            <td>{{reservationId}}</td>
+            <td>{{buildingId}}</td>
+            <td>{{buildingLevel}}</td>
+            <td>{{startDate}}</td>
+            <td>{{endDate}}</td>
+            <td>
+                <button type="submit" id="deleteReservation" value={{reservationId}} >Delete</button>
+            </td>
+        </tr>
+    {{/reservations}}
+</table>

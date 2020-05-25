@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="/static/myStyle.css">
+    <title>bonusInsertPage</title>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="/static/insert/bonus/bonusDelete.js"></script>
+</head>
+<body>
+<div>
+    <form method="get" action="/insert">
+        <button type="submit">Back</button>
+    </form>
+</div>
+    <div>
+        <form method="post" action="/insert/bonus">
+            <select name="contractId" placeholder="Contract">
+                {{#contracts}}
+                    <option value={{contractId}}>{{contractId}} {{companyName}}</option>
+                {{/contracts}}
+            </select>
+            <input type="txt" name="bonusTXT">
+            <button type="submit">ok</button>
+        </form>
+    </div>
+    <div id="table">
+        <table>
+            <caption>Бонусы</caption>
+            <tr>
+                <th>ID бонусы</th>
+                <th>ID контракта</th>
+                <th>Название компании</th>
+                <th>Бонус</th>
+                <th>Удалить</th>
+            </tr>
+            {{#bonuses}}
+                <tr>
+                    <td>{{bonusId}}</td>
+                    <td>{{contractId}}</td>
+                    <td>{{companyName}}</td>
+                    <td>{{bonus}}</td>
+                    <td>
+                        <button type="submit" id="deleteBonus" value={{bonusId}} >Delete</button>
+                    </td>
+                </tr>
+            {{/bonuses}}
+        </table>
+    </div>
+</body>
+</html>

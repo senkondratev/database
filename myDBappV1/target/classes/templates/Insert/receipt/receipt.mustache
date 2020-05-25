@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="/static/myStyle.css">
+    <title>please work</title>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="/static/insert/receipt/receiptValidate.js"></script>
+    <script type="text/javascript" src="/static/insert/receipt/receiptDelete.js"></script>
+</head>
+<body>
+<div>
+    <form method="get" action="/insert">
+        <button type="submit">Back</button>
+    </form>
+</div>
+
+<div>
+    <form action="/insert/receipt" method="post">
+        <select name="guestId" id="guestSelect">
+            <option disabled selected>Choose guest</option>
+            {{#guests}}
+                <option value={{guestId}}>{{guestId}} {{ClientSurname}}</option>
+            {{/guests}}
+        </select>
+        <select name="serviceId" id="serviceSelect">
+            {{#services}}
+                <option value={{serviceId}}>{{serviceId}} {{serviceName}}</option>
+            {{/services}}
+        </select>
+        <button type="submit">ok</button>
+    </form>
+</div>
+<div id="table">
+    <table>
+        <caption>Контракты</caption>
+        <tr>
+            <th>ID чека</th>
+            <th>ID гостя</th>
+            <th>Название услуги</th>
+            <th>Удалить</th>
+        </tr>
+        {{#receipts}}
+            <tr>
+                <td>{{receiptId}}</td>
+                <td>{{guestId}}</td>
+                <td>{{serviceName}}</td>
+                <td>
+                    <button type="submit" id="deleteReceipt" value={{receiptId}} >Delete</button>
+                </td>
+            </tr>
+        {{/receipts}}
+    </table>
+</div>
+</body>
+</html>

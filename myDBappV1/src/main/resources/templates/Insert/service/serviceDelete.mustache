@@ -1,0 +1,23 @@
+<table>
+    <caption>Услуги</caption>
+    <tr>
+        <th>ID услуги</th>
+        <th>ID здания</th>
+        <th>Число звезд злания</th>
+        <th>Цена услуги</th>
+        <th>Название услуги</th>
+        <th>Удалить</th>
+    </tr>
+    {{#services}}
+        <tr>
+            <td>{{serviceId}}</td>
+            <td>{{buildingId}}</td>
+            <td>{{buildingLevel}}</td>
+            <td>{{servicePrice}}</td>
+            <td>{{serviceName}}</td>
+            <td>
+                <button type="submit" id="deleteService" value={{serviceId}} >Delete</button>
+            </td>
+        </tr>
+    {{/services}}
+</table>

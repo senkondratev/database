@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="/static/myStyle.css">
+    <title>please work</title>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="/static/insert/guest/guestValidate.js"></script>
+    <script type="text/javascript" src="/static/insert/guest/guestDelete.js"></script>
+</head>
+<body>
+<div>
+    <form method="get" action="/insert">
+        <button type="submit">Back</button>
+    </form>
+</div>
+    <div>
+        <form action="/insert/guest" method="post">
+            <select name="reservationId" id="reservationSelect">
+                <option disabled selected>Choose reservation</option>
+                {{#reservations}}
+                    <option value={{reservationId}}>{{reservationId}} idReservation</option>
+                {{/reservations}}
+            </select>
+            <select name="roomId" id="roomSelect">
+                {{#rooms}}
+                    <option value={{roomId}}>{{roomId}} idRoom</option>
+                {{/rooms}}
+            </select>
+            <select name="companyId">
+                {{#companies}}
+                    <option value={{companyId}}>{{companyId}} idCompany</option>
+                {{/companies}}
+            </select>
+            <select name="clientId">
+                {{#clients}}
+                    <option value={{clientId}}>{{clientId}} idClient</option>
+                {{/clients}}
+            </select>
+
+            <select name="reviewType">
+                <option value="false">false</option>
+                <option value="true">true</option>
+            </select>
+            <input name="review" type="text">
+            <button type="submit">ok</button>
+        </form>
+
+    </div>
+<div id="table">
+    <table>
+        <caption>Гости</caption>
+        <tr>
+            <th>ID гостя</th>
+            <th>ID брони</th>
+            <th>Название компании</th>
+            <th>Имя клиента</th>
+            <th>Фамилия клиента</th>
+            <th>ID комнаты</th>
+            <th>Тип отзыва</th>
+            <th>Отзыв</th>
+            <th>Удалить</th>
+        </tr>
+        {{#guests}}
+            <tr>
+                <td>{{guestId}}</td>
+                <td>{{reservationId}}</td>
+                <td>{{companyName}}</td>
+                <td>{{clientName}}</td>
+                <td>{{clientSurname}}</td>
+                <td>{{roomId}}</td>
+                <td>{{reviewType}}</td>
+                <td>{{guestReview}}</td>
+                <td>
+                    <button type="submit" id="deleteGuest" value={{guestId}} >Delete</button>
+                </td>
+            </tr>
+        {{/guests}}
+    </table>
+</div>
+</body>
+</html>

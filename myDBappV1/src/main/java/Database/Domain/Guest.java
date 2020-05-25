@@ -55,6 +55,9 @@ public class Guest {
     public String getClientSurname(){
         return client.getClientSurname();
     }
+    public String getClientName(){
+        return client.getClientName();
+    }
     public int getRoomId(){
         return room.getRoomId();
     }
