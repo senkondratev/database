@@ -15,7 +15,9 @@
 </div>
     <div>
         <form method="post" action="/insert/contract">
-            <select name="companyId" placeholder="Компания">
+
+            <select name="companyId" placeholder="Компания" required>
+                <option value="" selected disabled>Выберите компанию</option>
                 {{#companies}}
                     <option value={{companyId}}>{{companyName}}</option>
                 {{/companies}}

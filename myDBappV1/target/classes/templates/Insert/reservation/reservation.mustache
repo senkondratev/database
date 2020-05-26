@@ -13,15 +13,19 @@
         <button type="submit">Back</button>
     </form>
 </div>
+<div>
+    {{status}}
+</div>
     <div>
         <form action="/insert/reservation" method="post">
-            <select name="buildingId">
+            <select name="buildingId" required>
+                <option value="" disabled selected>Выберите здание по ID</option>
                 {{#buildings}}
-                    <option value={{buildingId}}>it's building {{buildingId}}</option>
+                    <option value={{buildingId}}>{{buildingId}}</option>
                 {{/buildings}}
             </select>
-            <input type="date" name="startDate">
-            <input type="date" name="endDate">
+            Начало брони:<input type="date" name="startDate" required>
+             Окончание:<input type="date" name="endDate" required>
             <button type="submit">ok</button>
         </form>
     </div>

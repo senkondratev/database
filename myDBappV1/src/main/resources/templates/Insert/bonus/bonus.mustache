@@ -15,12 +15,13 @@
 </div>
     <div>
         <form method="post" action="/insert/bonus">
-            <select name="contractId" placeholder="Contract">
+            <select name="contractId" placeholder="Contract" required>
+                <option value="" selected disabled>Выберите контракт</option>
                 {{#contracts}}
-                    <option value={{contractId}}>{{contractId}} {{companyName}}</option>
+                    <option value={{contractId}}>ID контратка - {{contractId}}. Название компании - {{companyName}}</option>
                 {{/contracts}}
             </select>
-            <input type="txt" name="bonusTXT">
+            <input type="txt" name="bonusTXT" required placeholder="Бонус">
             <button type="submit">ok</button>
         </form>
     </div>

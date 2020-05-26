@@ -17,16 +17,14 @@
 
 <div>
     <form action="/insert/receipt" method="post">
-        <select name="guestId" id="guestSelect">
-            <option disabled selected>Choose guest</option>
+        <select name="guestId" id="guestSelect" required>
+            <option disabled selected value="">Выберите гостя по ID и фамилии</option>
             {{#guests}}
                 <option value={{guestId}}>{{guestId}} {{ClientSurname}}</option>
             {{/guests}}
         </select>
-        <select name="serviceId" id="serviceSelect">
-            {{#services}}
-                <option value={{serviceId}}>{{serviceId}} {{serviceName}}</option>
-            {{/services}}
+        <select name="serviceId" id="serviceSelect" required>
+            <option disabled selected>Сначала выберите гостя</option>
         </select>
         <button type="submit">ok</button>
     </form>

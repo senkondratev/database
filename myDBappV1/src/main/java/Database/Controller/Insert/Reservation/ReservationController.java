@@ -20,17 +20,19 @@ public class ReservationController {
     @Autowired
     private BuildingRepository buildingRepository;
 
-    public void createIterators(Map<String, Object> model){
+    public void createIterators(Map<String, Object> model, String s){
         Iterable<Reservation> itReservation = reservationRepository.findAll();
         model.put("reservations", itReservation);
 
         Iterable<Building> itBuilding = buildingRepository.findAll();
         model.put("buildings", itBuilding);
+
+        model.put("status", s);
     }
 
     @GetMapping("/insert/reservation")
     public String reservation(Map<String, Object> model){
-        createIterators(model);
+        createIterators(model,"Ошибок нет");
         return "/insert/reservation/reservation";
     }
 
@@ -39,12 +41,15 @@ public class ReservationController {
                                  @RequestParam Date startDate,
                                  @RequestParam Date endDate,
                                  Map<String, Object> model){
-        Building tmpBuilding = buildingRepository.findByBuildingId(buildingId);
-        Reservation tmpReservation = new Reservation(tmpBuilding, startDate, endDate);
-        reservationRepository.save(tmpReservation);
-
-        createIterators(model);
-
+        if(startDate.before(endDate)) {
+            Building tmpBuilding = buildingRepository.findByBuildingId(buildingId);
+            Reservation tmpReservation = new Reservation(tmpBuilding, startDate, endDate);
+            reservationRepository.save(tmpReservation);
+            createIterators(model,"Ошибок нет");
+        }
+        else {
+            createIterators(model,"Вы перепутали даты");
+        }
         return "/insert/reservation/reservation";
     }
 

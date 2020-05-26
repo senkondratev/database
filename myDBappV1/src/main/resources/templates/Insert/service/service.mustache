@@ -16,13 +16,14 @@
 </div>
     <div>
         <form method="post" action="/insert/service">
-            <select name="buildingId">
+            <select name="buildingId" required>
+                <option selected disabled value="">Выберите здание по ID и звездам</option>
                 {{#buildings}}
                     <option value={{buildingId}}>{{buildingId}} {{level}}</option>>
                 {{/buildings}}
             </select>
-            <input type="number" name="servicePrice" max="100000">
-            <input type="text" name="serviceName">
+            Стоимость услуги: <input type="number" name="servicePrice" min="1" max="100000" required>
+            <input type="text" name="serviceName" required placeholder="Название услуги">
             <button type="submit">ok</button>
         </form>
     </div>
