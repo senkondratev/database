@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.security.PublicKey;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
@@ -30,8 +31,8 @@ public class GuestController {
     @Autowired
     private RoomRepository roomRepository;
 
-    public void createIterators(Map<String, Object> model){
-        Iterable<Guest> itGuest = guestRepository.findAll();
+    public void createIterators(Map<String, Object> model, String s){
+        Iterable<Guest> itGuest = guestRepository.findByOrderByGuestId();
         model.put("guests", itGuest);
 
         Iterable<Reservation> itReservation = reservationRepository.findAll();
@@ -43,6 +44,7 @@ public class GuestController {
         Iterable<Client> itClient =clientRepository.findAll();
         model.put("clients", itClient);
 
+        model.put("status", s);
         //Iterable<Room> itRoom = roomRepository.findAll();
        // model.put("rooms", itRoom);
 
@@ -50,18 +52,16 @@ public class GuestController {
 
     @GetMapping("/insert/guest")
     public String guest(Map<String, Object> model){
-        createIterators(model);
+        createIterators(model,"Все хорошо");
 
         return "/insert/guest/guest";
     }
 
     @PostMapping("insert/guest")
     public String addGuest(@RequestParam int reservationId,
-                           @RequestParam int companyId,
+                           @RequestParam(required = false) Integer companyId,
                            @RequestParam int clientId,
                            @RequestParam int roomId,
-                           @RequestParam boolean reviewType,
-                           @RequestParam String review,
                            Map<String, Object> model) {
         Date d = new Date(System.currentTimeMillis());
         Room tmpRoom = roomRepository.findByRoomId(roomId);
@@ -70,19 +70,24 @@ public class GuestController {
 
 
 
-            Company tmpCompany = companyRepository.findByCompanyId(companyId);
             Client tmpClient = clientRepository.findByClientId(clientId);
 
-            Guest tmpGuest = new Guest(tmpReservation, tmpCompany, tmpClient, tmpRoom, reviewType, review);
-            guestRepository.save(tmpGuest);
-
-
+            if (companyId!=null) {
+                Company tmpCompany = companyRepository.findByCompanyId(companyId);
+                Guest tmpGuest = new Guest(tmpReservation, tmpCompany, tmpClient, tmpRoom, true, "Отзыв не оставил");
+                guestRepository.save(tmpGuest);
+            }
+            else{
+                Guest tmpGuest = new Guest(tmpReservation, null, tmpClient, tmpRoom, true, "Отзыв не оставил");
+                guestRepository.save(tmpGuest);
+            }
+            createIterators(model,"Все хорошо");
         }
         else
         {
-            System.out.println("многовато людей - НАДО КАК-ТО ОБ ЭТОМ СООБЩИТЬ НА СТРАНИЦУ...");
+            createIterators(model,"В этот номер нельзя добавить новых жильцов");
         }
-        createIterators(model);
+
 
         return "/insert/guest/guest";
     }
@@ -127,6 +132,29 @@ public class GuestController {
         model.put("guests", it);
 
         return "/insert/guest/guestDelete";
+    }
+
+    @GetMapping("/insert/guestReview")
+    public String reviewUpdate(@RequestParam int guestId, Map<String, Object> model){
+        Guest g = guestRepository.findByGuestId(guestId);
+        model.put("guest", g);
+
+        return "/insert/guest/newReview";
+    }
+
+    @GetMapping("/insert/guestUpdateReview")
+    public String review(@RequestParam int guestId,
+                         @RequestParam boolean reviewType,
+                         @RequestParam String review,
+                         Map<String,Object> model){
+        Guest g = guestRepository.findByGuestId(guestId);
+        g.setReviewType(reviewType);
+        g.setGuestReview(review);
+        guestRepository.save(g);
+
+        createIterators(model,"Все хорошо");
+        return "/insert/guest/guest";
+
     }
 }
 

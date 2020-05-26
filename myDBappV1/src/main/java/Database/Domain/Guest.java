@@ -50,7 +50,12 @@ public class Guest {
         return reservation.getReservationId();
     }
     public String getCompanyName(){
-        return company.getCompanyName();
+        if (company!=null) {
+            return company.getCompanyName();
+        }
+        else{
+            return "Не от компании";
+        }
     }
     public String getClientSurname(){
         return client.getClientSurname();

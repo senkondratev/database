@@ -9,18 +9,25 @@
         <th>ID комнаты</th>
         <th>Тип отзыва</th>
         <th>Отзыв</th>
+        <th>Изменить отзыв</th>
         <th>Удалить</th>
     </tr>
     {{#guests}}
         <tr>
-            <td>{{guestId}}</td>
-            <td>{{reservationId}}</td>
-            <td>{{companyName}}</td>
-            <td>{{clientName}}</td>
-            <td>{{clientSurname}}</td>
-            <td>{{roomId}}</td>
-            <td>{{reviewType}}</td>
-            <td>{{guestReview}}</td>
+            <form method="get" action="/insert/guestReview">
+                <input type="hidden" name="guestId" value={{guestId}}>
+                <td>{{guestId}}</td>
+                <td>{{reservationId}}</td>
+                <td>{{companyName}}</td>
+                <td>{{clientName}}</td>
+                <td>{{clientSurname}}</td>
+                <td>{{roomId}}</td>
+                <td>{{reviewType}}</td>
+                <td>{{guestReview}}</td>
+                <td>
+                    <button type="submit">Изменить</button>
+                </td>
+            </form>
             <td>
                 <button type="submit" id="deleteGuest" value={{guestId}} >Delete</button>
             </td>

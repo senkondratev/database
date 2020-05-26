@@ -14,36 +14,31 @@
         <button type="submit">Back</button>
     </form>
 </div>
+<div>{{status}}</div>
     <div>
         <form action="/insert/guest" method="post">
-            <select name="reservationId" id="reservationSelect">
-                <option disabled selected>Choose reservation</option>
+            <select name="reservationId" id="reservationSelect" required>
+                <option disabled selected value="">Выберите бронь по ID</option>
                 {{#reservations}}
-                    <option value={{reservationId}}>{{reservationId}} idReservation</option>
+                    <option value={{reservationId}}>{{reservationId}}</option>
                 {{/reservations}}
             </select>
-            <select name="roomId" id="roomSelect">
-                {{#rooms}}
-                    <option value={{roomId}}>{{roomId}} idRoom</option>
-                {{/rooms}}
+            <select name="roomId" id="roomSelect" required>
+                <option selected disabled value="">Сначала выберите бронь</option>
             </select>
             <select name="companyId">
+                <option selected disabled value="">Выберите компанию по ID, если нужно</option>
                 {{#companies}}
                     <option value={{companyId}}>{{companyId}} idCompany</option>
                 {{/companies}}
             </select>
-            <select name="clientId">
+            <select name="clientId" required>
+                <option disabled selected value="">Выберите клиента по ID и фамилии</option>
                 {{#clients}}
-                    <option value={{clientId}}>{{clientId}} idClient</option>
+                    <option value={{clientId}}>{{clientId}} {{clientSurname}}</option>
                 {{/clients}}
             </select>
-
-            <select name="reviewType">
-                <option value="false">false</option>
-                <option value="true">true</option>
-            </select>
-            <input name="review" type="text">
-            <button type="submit">ok</button>
+            <button type="submit">OK</button>
         </form>
 
     </div>
@@ -59,10 +54,13 @@
             <th>ID комнаты</th>
             <th>Тип отзыва</th>
             <th>Отзыв</th>
+            <th>Изменить отзыв</th>
             <th>Удалить</th>
         </tr>
         {{#guests}}
             <tr>
+                <form method="get" action="/insert/guestReview">
+                    <input type="hidden" name="guestId" value={{guestId}}>
                 <td>{{guestId}}</td>
                 <td>{{reservationId}}</td>
                 <td>{{companyName}}</td>
@@ -71,6 +69,10 @@
                 <td>{{roomId}}</td>
                 <td>{{reviewType}}</td>
                 <td>{{guestReview}}</td>
+                <td>
+                    <button type="submit">Изменить</button>
+                </td>
+                </form>
                 <td>
                     <button type="submit" id="deleteGuest" value={{guestId}} >Delete</button>
                 </td>
