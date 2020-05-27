@@ -1,0 +1,76 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="/static/myStyle.css">
+    <title>Второй запрос</title>
+    <meta http-equiv="Content-Type" content="text/html; charseet=UTF-8" />
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="/static/select/second/capacity.js"></script>
+    <script type="text/javascript" src="/static/select/second/floor.js"></script>
+    <script type="text/javascript" src="/static/select/second/profit.js"></script>
+    <script type="text/javascript" src="/static/select/second/building.js"></script>
+
+</head>
+
+<body>
+<div>
+    <form method="get" action="/select">
+        <button type="submit">Back</button>
+    </form>
+</div>
+{{status}} <br>
+Число отображенных гостей -  {{count}}
+<form method="get" action="/select/secondSelect">
+    Начало брони:<input type="date" name="d1" required>
+    Окончание:<input type="date" name="d2" required>
+    <div  id="addCapacity">
+        <button type="button" id = "capacityButton">Добавить ограничение на вместимость</button>
+    </div>
+    <div  id="addFloor">
+        <button type="button" id = "floorButton">Добавить ограничение на этаж</button>
+    </div>
+    <div  id="addProfit">
+        <button type="button" id = "profitButton">Добавить ограничение на прибыль</button>
+    </div>
+    <div  id="addBuilding">
+        <button type="button" id = "buildingButton">Добавить ограничение на строение</button>
+    </div>
+
+    <button type="submit">ok</button>
+</form>
+<form method="get" action="/select/second">
+    <button type="submit">Reset</button>
+</form>
+<div>
+    <table>
+        <caption>Гости</caption>
+        <tr>
+            <th>ID гостя</th>
+            <th>ID брони</th>
+            <th>Название компании</th>
+            <th>Имя клиента</th>
+            <th>Фамилия клиента</th>
+            <th>ID комнаты</th>
+            <th>Тип отзыва</th>
+            <th>Отзыв</th>
+        </tr>
+        {{#guests}}
+            <tr>
+                <form method="get" action="/insert/guestReview">
+                    <td>{{guestId}}</td>
+                    <td>{{reservationId}}</td>
+                    <td>{{companyName}}</td>
+                    <td>{{clientName}}</td>
+                    <td>{{clientSurname}}</td>
+                    <td>{{roomId}}</td>
+                    <td>{{reviewType}}</td>
+                    <td>{{guestReview}}</td>
+                </form>
+            </tr>
+        {{/guests}}
+    </table>
+</div>
+</body>
+
+
+</html>
