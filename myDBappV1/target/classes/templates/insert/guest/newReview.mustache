@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="/static/myStyle.css">
+    <title>please work</title>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+</head>
+<body>
+<div>
+    <form method="get" action="/insert/guest">
+        <button type="submit">Back</button>
+    </form>
+</div>
+<div>
+    <form method="get" action="/insert/guestUpdateReview">
+        {{#guest}}
+        <input type="hidden" name="guestId" value="{{guestId}}">
+        {{/guest}}
+        <select name="reviewType" required>
+            <option selected disabled value="">Выберите тип отзыва</option>
+            <option value="false">false</option>
+            <option value="true">true</option>
+        </select>
+        <input name="review" type="text" required placeholder="Отзыв">
+        <button type="submit">Ok</button>
+    </form>
+
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,21 @@
+<table>
+    <caption>Клиенты</caption>
+    <tr>
+        <th>ID</th>
+        <th>Имя</th>
+        <th>Фамилия</th>
+        <th>Первое появление</th>
+        <th>Удалить</th>
+    </tr>
+    {{#clients}}
+        <tr>
+            <td>{{clientId}}</td>
+            <td>{{clientName}}</td>
+            <td>{{clientSurname}}</td>
+            <td>{{firstAppearance}}</td>
+            <td>
+                <button type="submit" value="{{clientId}}" id="deleteClient">Delete</button>
+            </td>
+        </tr>
+    {{/clients}}
+</table>

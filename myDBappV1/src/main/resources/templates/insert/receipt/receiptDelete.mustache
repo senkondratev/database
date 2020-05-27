@@ -1,0 +1,19 @@
+<table>
+    <caption>Контракты</caption>
+    <tr>
+        <th>ID чека</th>
+        <th>ID гостя</th>
+        <th>Название услуги</th>
+        <th>Удалить</th>
+    </tr>
+    {{#receipts}}
+        <tr>
+            <td>{{receiptId}}</td>
+            <td>{{guestId}}</td>
+            <td>{{serviceName}}</td>
+            <td>
+                <button type="submit" id="deleteReceipt" value={{receiptId}} >Delete</button>
+            </td>
+        </tr>
+    {{/receipts}}
+</table>

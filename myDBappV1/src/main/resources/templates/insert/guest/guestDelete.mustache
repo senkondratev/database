@@ -1,0 +1,36 @@
+<table>
+    <caption>Гости</caption>
+    <tr>
+        <th>ID гостя</th>
+        <th>ID брони</th>
+        <th>Название компании</th>
+        <th>Имя клиента</th>
+        <th>Фамилия клиента</th>
+        <th>ID комнаты</th>
+        <th>Тип отзыва</th>
+        <th>Отзыв</th>
+        <th>Изменить отзыв</th>
+        <th>Удалить</th>
+    </tr>
+    {{#guests}}
+        <tr>
+            <form method="get" action="/insert/guestReview">
+                <input type="hidden" name="guestId" value={{guestId}}>
+                <td>{{guestId}}</td>
+                <td>{{reservationId}}</td>
+                <td>{{companyName}}</td>
+                <td>{{clientName}}</td>
+                <td>{{clientSurname}}</td>
+                <td>{{roomId}}</td>
+                <td>{{reviewType}}</td>
+                <td>{{guestReview}}</td>
+                <td>
+                    <button type="submit">Изменить</button>
+                </td>
+            </form>
+            <td>
+                <button type="submit" id="deleteGuest" value={{guestId}} >Delete</button>
+            </td>
+        </tr>
+    {{/guests}}
+</table>

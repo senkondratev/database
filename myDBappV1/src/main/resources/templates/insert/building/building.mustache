@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="/static/myStyle.css">
+    <title>buildingInsertPage</title>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="/static/insert/building/buildingDelete.js"></script>
+</head>
+<body>
+<div>
+    <form method="get" action="/insert">
+        <button type="submit">Back</button>
+    </form>
+</div>
+    <div>
+        <form method="post" action="/insert/building">
+            <select name="lvl" required>
+                <option selected disabled value="">Выберите число звезд</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>
+            <select name="height" required>
+                <option selected disabled value="">Выберите число этажей</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>
+            <button type="submit">ok</button>
+        </form>
+    </div>
+<div id="table">
+    <table>
+        <caption>Здания</caption>
+        <tr>
+            <th>ID здания</th>
+            <th>Число звезд</th>
+            <th>Число этажей</th>
+            <th>Удалить</th>
+        </tr>
+        {{#buildings}}
+            <tr>
+                <td>{{buildingId}}</td>
+                <td>{{level}}</td>
+                <td>{{buildingHeight}}</td>
+                <td>
+                    <button type="submit" id="deleteBuilding" value={{buildingId}} >Delete</button>
+                </td>
+            </tr>
+        {{/buildings}}
+    </table>
+</div>
+</body>
+</html>

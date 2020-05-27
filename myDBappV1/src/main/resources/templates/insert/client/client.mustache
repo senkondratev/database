@@ -1,0 +1,49 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="/static/myStyle.css">
+    <title>clientInsertPage</title>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="/static/insert/client/clientDelete.js"></script>
+</head>
+<body>
+<div>
+    <form method="get" action="/insert">
+        <button type="submit">Back</button>
+    </form>
+</div>
+    <div>
+        <form method="post" action="/insert/client">
+            <input type="text" name="name" required placeholder="Имя">
+            <input type="text" name="surname" required placeholder="Фамилия">
+            <input type="date" name="date" required placeholder="Дата появления">
+            <button type="submit">Ok</button>
+        </form>
+    </div>
+<br>
+<div id="table">
+<table>
+    <caption>Клиенты</caption>
+    <tr>
+        <th>ID</th>
+        <th>Имя</th>
+        <th>Фамилия</th>
+        <th>Первое появление</th>
+        <th>Удалить</th>
+    </tr>
+    {{#clients}}
+        <tr>
+            <td>{{clientId}}</td>
+            <td>{{clientName}}</td>
+            <td>{{clientSurname}}</td>
+            <td>{{firstAppearance}}</td>
+            <td>
+                <button type="submit" id="deleteClient" value={{clientId}}>Delete</button>
+            </td>
+        </tr>
+    {{/clients}}
+</table>
+</div>
+</body>
+</html>

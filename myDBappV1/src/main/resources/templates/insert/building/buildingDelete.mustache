@@ -1,0 +1,19 @@
+<table>
+    <caption>Здания</caption>
+    <tr>
+        <th>ID здания</th>
+        <th>Число звезд</th>
+        <th>Число этажей</th>
+        <th>Удалить</th>
+    </tr>
+    {{#buildings}}
+        <tr>
+            <td>{{buildingId}}</td>
+            <td>{{level}}</td>
+            <td>{{buildingHeight}}</td>
+            <td>
+                <button type="submit" id="deleteBuilding" value={{buildingId}} >Delete</button>
+            </td>
+        </tr>
+    {{/buildings}}
+</table>
