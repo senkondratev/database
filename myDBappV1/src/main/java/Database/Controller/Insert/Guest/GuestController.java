@@ -113,6 +113,9 @@ public class GuestController {
             if((guestRepository.findByRoom_RoomIdAndReservation_StartDateAfterAndReservation_EndDateBefore(r.getRoomId(),sd,ed)).size() > 0){
                 flag += 1;
             }
+           /*if(guestRepository.findByRoom_RoomIdAndReservation_StartDateBeforeAndReservation_EndDateAfterOrRoom_RoomIdAndReservation_StartDateBeforeAndReservation_EndDateAfterOrRoom_RoomIdAndReservation_StartDateAfterAndReservation_EndDateBefore(r.getRoomId(),sd,sd,r.getRoomId(),ed,ed,r.getRoomId(),sd,ed).size()>0){
+               flag+=1; //три ифа выше можно заменить таким огромным методом. Впрочем, это все равно плохо, daterange не работает.
+           }*/
 
             if(guestRepository.findByRoom_RoomIdAndReservation_StartDateAndReservation_ReservationIdNot(r.getRoomId(),sd,res).size()>0){
                 flag+=1;

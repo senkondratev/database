@@ -1,6 +1,7 @@
 package Database.Repository;
 
 import Database.Domain.Guest;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
 import java.sql.Date;
@@ -12,6 +13,8 @@ public interface GuestRepository extends CrudRepository<Guest, Integer> {
     public List<Guest> findByRoom_RoomIdAndReservation_StartDateAfterAndReservation_EndDateBefore(int i, Date d1, Date d2);
     public List<Guest> findByRoom_RoomIdAndReservation_StartDateAndReservation_EndDate(int i, Date d1, Date d2);
     public List<Guest> findByOrderByGuestId();
+    public List<Guest> findByRoom_RoomIdAndReservation_StartDateBeforeAndReservation_EndDateAfterOrRoom_RoomIdAndReservation_StartDateBeforeAndReservation_EndDateAfterOrRoom_RoomIdAndReservation_StartDateAfterAndReservation_EndDateBefore(int i, Date d1, Date d2, int j,Date d3, Date d4, int k, Date d5, Date d6);
+    //огромный и страшный метод работает, но от этого не перестает быть плохим.
 
     //первый запрос
     public List<Guest> findByCompany_CompanyId(int i);
@@ -40,4 +43,5 @@ public interface GuestRepository extends CrudRepository<Guest, Integer> {
     public List<Guest> findByRoom_RoomIdAndReservation_EndDate(int roomId, Date endDate);
     public List<Guest> findByRoom_RoomIdAndReservation_EndDateAndReservation_ReservationIdNot(int roomId, Date endDate, int resId);
     public List<Guest> findByRoom_RoomIdAndReservation_StartDateAndReservation_ReservationIdNot(int roomId, Date startDate, int resId);
+
 }
