@@ -52,17 +52,11 @@ public class firstContoller {
             if (d1.before(d2)) {
                 Iterable<Company> itCompany = companyRepository.findAll();
                 int count = 0;
-                System.out.println(d1.toLocalDate());
-                System.out.println(d2.toLocalDate());
                 List<Company> companyList = new ArrayList<>();
                 for (Company c : itCompany) {
-                    System.out.println(c.getCompanyName());
-                    System.out.println(guestRepository.findByCompany_CompanyIdAndReservation_StartDateAfterAndReservation_EndDateBefore(c.getCompanyId(), d1, d2).size());
                     if ((guestRepository.findByCompany_CompanyIdAndReservation_StartDateAfterAndReservation_EndDateBefore(c.getCompanyId(), d1, d2).size()) >= volume) {
-                        System.out.println("ее добавляем");
                         companyList.add(c);
                     }
-                    System.out.println("------------------");
                 }
                 model.put("companies", companyList);
                 model.put("count", companyList.size());
