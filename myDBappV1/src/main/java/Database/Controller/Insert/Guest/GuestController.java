@@ -99,6 +99,7 @@ public class GuestController {
         Iterable<Room> itRoom = roomRepository.findAllByBuilding_BuildingId(reservation.getBuildingId());
         Date sd = reservation.getStartDate();
         Date ed = reservation.getEndDate();
+        int res = reservation.getReservationId();
         List<Room> roomList = new ArrayList<>();
         int flag = 0;
         for(Room r: itRoom){
@@ -112,16 +113,17 @@ public class GuestController {
             if((guestRepository.findByRoom_RoomIdAndReservation_StartDateAfterAndReservation_EndDateBefore(r.getRoomId(),sd,ed)).size() > 0){
                 flag += 1;
             }
-            if(guestRepository.findByRoom_RoomIdAndReservation_StartDate(r.getRoomId(),sd).size()>0){
+
+            if(guestRepository.findByRoom_RoomIdAndReservation_StartDateAndReservation_ReservationIdNot(r.getRoomId(),sd,res).size()>0){
                 flag+=1;
             }
-            if(guestRepository.findByRoom_RoomIdAndReservation_EndDate(r.getRoomId(),sd).size()>0){
+            if(guestRepository.findByRoom_RoomIdAndReservation_EndDateAndReservation_ReservationIdNot(r.getRoomId(),sd,res).size()>0){
                 flag+=1;
             }
-            if(guestRepository.findByRoom_RoomIdAndReservation_StartDate(r.getRoomId(),ed).size()>0){
+            if(guestRepository.findByRoom_RoomIdAndReservation_StartDateAndReservation_ReservationIdNot(r.getRoomId(),ed,res).size()>0){
                 flag+=1;
             }
-            if(guestRepository.findByRoom_RoomIdAndReservation_EndDate(r.getRoomId(),ed).size()>0){
+            if(guestRepository.findByRoom_RoomIdAndReservation_EndDateAndReservation_ReservationIdNot(r.getRoomId(),ed,res).size()>0){
                 flag+=1;
             }
             if(flag == 0){
