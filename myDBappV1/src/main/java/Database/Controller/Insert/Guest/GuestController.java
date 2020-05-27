@@ -112,6 +112,18 @@ public class GuestController {
             if((guestRepository.findByRoom_RoomIdAndReservation_StartDateAfterAndReservation_EndDateBefore(r.getRoomId(),sd,ed)).size() > 0){
                 flag += 1;
             }
+            if(guestRepository.findByRoom_RoomIdAndReservation_StartDate(r.getRoomId(),sd).size()>0){
+                flag+=1;
+            }
+            if(guestRepository.findByRoom_RoomIdAndReservation_EndDate(r.getRoomId(),sd).size()>0){
+                flag+=1;
+            }
+            if(guestRepository.findByRoom_RoomIdAndReservation_StartDate(r.getRoomId(),ed).size()>0){
+                flag+=1;
+            }
+            if(guestRepository.findByRoom_RoomIdAndReservation_EndDate(r.getRoomId(),ed).size()>0){
+                flag+=1;
+            }
             if(flag == 0){
                 roomList.add(r);
             }

@@ -1,0 +1,63 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="/static/myStyle.css">
+    <title>Четвертый запрос</title>
+    <meta http-equiv="Content-Type" content="text/html; charseet=UTF-8" />
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="/static/select/fourth/capacity.js"></script>
+    <script type="text/javascript" src="/static/select/fourth/floor.js"></script>
+    <script type="text/javascript" src="/static/select/fourth/profit.js"></script>
+    <script type="text/javascript" src="/static/select/fourth/building.js"></script>
+
+</head>
+<body>
+<form method="get" action="/select">
+    <button type="submit">Back</button>
+</form>
+Число свободных сейчас комнат - {{count}}<br>
+{{whatisit}}<br>
+<form method="get" action="/select/fourthSelect">
+    <div  id="addCapacity">
+        <button type="button" id = "capacityButton">Добавить ограничение на вместимость</button>
+    </div>
+    <div  id="addFloor">
+        <button type="button" id = "floorButton">Добавить ограничение на этаж</button>
+    </div>
+    <div  id="addProfit">
+        <button type="button" id = "profitButton">Добавить ограничение на прибыль</button>
+    </div>
+    <div  id="addBuilding">
+        <button type="button" id = "buildingButton">Добавить ограничение на строение</button>
+    </div>
+
+    <button type="submit">ok</button>
+</form>
+<form method="get" action="/select/fourth">
+    <button type="submit">Reset</button>
+</form>
+
+
+<div >
+    <table>
+        <caption>Комнаты</caption>
+        <tr>
+            <th>ID комнаты</th>
+            <th>ID здания</th>
+            <th>Прибыль в день</th>
+            <th>Этаж</th>
+            <th>Вместимость</th>
+        </tr>
+        {{#rooms}}
+            <tr>
+                <td>{{roomId}}</td>
+                <td>{{buildingId}}</td>
+                <td>{{roomProfit}}</td>
+                <td>{{roomFloor}}</td>
+                <td>{{roomCapacity}}</td>
+            </tr>
+        {{/rooms}}
+    </table>
+</div>
+</body>
+</html>

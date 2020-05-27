@@ -30,6 +30,12 @@ public class thirdController {
             if(guestRepository.findByRoom_RoomIdAndReservation_StartDateBeforeAndReservation_EndDateAfter(r.getRoomId(),d, d).size() > 0){
                 flag+=1;
             }
+            if(guestRepository.findByRoom_RoomIdAndReservation_StartDate(r.getRoomId(),d).size()>0){
+                flag+=1;
+            }
+            if(guestRepository.findByRoom_RoomIdAndReservation_EndDate(r.getRoomId(),d).size()>0){
+                flag+=1;
+            }
             if(flag == 0){
                 roomList.add(r);
             }
