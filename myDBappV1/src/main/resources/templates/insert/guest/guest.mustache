@@ -29,7 +29,7 @@
             <select name="companyId">
                 <option selected disabled value="">Выберите компанию по ID, если нужно</option>
                 {{#companies}}
-                    <option value={{companyId}}>{{companyId}} idCompany</option>
+                    <option value={{companyId}}>{{companyId}} {{companyName}}</option>
                 {{/companies}}
             </select>
             <select name="clientId" required>

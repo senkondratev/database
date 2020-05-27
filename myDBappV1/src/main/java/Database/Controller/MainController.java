@@ -16,4 +16,7 @@ public class MainController {
     public String insert() {
         return "insert";
     }
+
+    @GetMapping("/select")
+    public String select(){return "select";}
 }

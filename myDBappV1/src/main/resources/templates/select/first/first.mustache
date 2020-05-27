@@ -1,0 +1,49 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="/static/myStyle.css">
+    <title>Первый запрос</title>
+    <meta http-equiv="Content-Type" content="text/html; charseet=UTF-8" />
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="/static/select/first/adjustDate.js"></script>
+</head>
+
+<body>
+<div>
+    <form method="get" action="/select">
+        <button type="submit">Back</button>
+    </form>
+</div>
+{{status}}<br>
+Число отображенных компаний -  {{count}}
+<div>
+    <form method="get" action="/select/firstSelect">
+        <input type="number" name="volume" required min="0">
+        <div  id="addDate">
+            <button type="button" id = "dateButton">Добавить ограничение на даты</button>
+        </div>
+        <button type="submit">ok</button>
+    </form>
+    <form method="get" action="/select/first">
+        <button type="submit">Reset</button>
+    </form>
+</div>
+<div>
+    <table>
+        <caption>Компании</caption>
+        <tr>
+            <th>ID</th>
+            <th>Название</th>
+        </tr>
+        {{#companies}}
+            <tr>
+                <td>{{companyId}}</td>
+                <td>{{companyName}}</td>
+            </tr>
+        {{/companies}}
+    </table>
+</div>
+</body>
+
+
+</html>
