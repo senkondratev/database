@@ -1,0 +1,28 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="/static/myStyle.css">
+    <title>Выберите запрос</title>
+    <meta http-equiv="Content-Type" content="text/html; charseet=UTF-8" />
+
+</head>
+<body>
+<form method="get" action="/select">
+    <button type="submit">Back</button>
+</form>
+<br>
+<form action="/select/fifthSelect" method="get">
+    <select name="roomId" required>
+        <option selected disabled value="">Выберите комнату из числа свободных</option>
+        {{#rooms}}
+        <option value={{roomId}}>{{roomId}}</option>
+        {{/rooms}}
+    </select>
+    <button type="submit">Ok</button>
+</form>
+
+<br>
+
+
+</body>
+</html>

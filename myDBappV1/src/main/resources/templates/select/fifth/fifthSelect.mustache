@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="/static/myStyle.css">
+    <title>Выберите запрос</title>
+    <meta http-equiv="Content-Type" content="text/html; charseet=UTF-8" />
+
+</head>
+<body>
+<form method="get" action="/select">
+    <button type="submit">Back</button>
+</form>
+Начало следующей брони - {{firstStart}} <br>
+Время до следующей брони - {{timeLeft}}
+<table>
+    <caption>Информация о комнате</caption>
+    <tr>
+        <th>ID комнаты</th>
+        <th>ID здания</th>
+        <th>Прибыль в день</th>
+        <th>Этаж</th>
+        <th>Вместимость</th>
+    </tr>
+    {{#chosenRoom}}
+        <tr>
+            <td>{{roomId}}</td>
+            <td>{{buildingId}}</td>
+            <td>{{roomProfit}}</td>
+            <td>{{roomFloor}}</td>
+            <td>{{roomCapacity}}</td>
+        </tr>
+    {{/chosenRoom}}
+</table>
+
+
+
+</body>
+</html>

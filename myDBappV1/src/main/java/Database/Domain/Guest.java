@@ -1,6 +1,7 @@
 package Database.Domain;
 
 import javax.persistence.*;
+import java.sql.Date;
 import java.util.List;
 
 @Entity
@@ -69,6 +70,9 @@ public class Guest {
     public int getBuildingId()
     {
         return reservation.getBuildingId();
+    }
+    public Date getStartDate(){
+        return reservation.getStartDate();
     }
 
     //геттеры полей этого класса
