@@ -52,4 +52,8 @@ public interface GuestRepository extends CrudRepository<Guest, Integer> {
     public List<Guest> findByRoom_RoomIdAndReservation_StartDateAndReservation_EndDateBefore(int roomId, Date d1, Date d2);
     public List<Guest> findByRoom_RoomIdAndReservation_EndDateAndReservation_EndDateBefore(int roomId, Date d1, Date d2);
 
+
+    //восьмой запрос
+    public List<Guest> findByReviewType(boolean type);
+
 }

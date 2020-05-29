@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="/static/myStyle.css">
+    <title>Восьмой запрос work</title>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+</head>
+<body>
+<div>
+    <form method="get" action="/select">
+        <button type="submit">Back</button>
+    </form>
+</div>
+
+<div>
+
+
+</div>
+<div id="table">
+    <table>
+        <caption>Гости</caption>
+        <tr>
+            <th>ID гостя</th>
+            <th>ID брони</th>
+            <th>Название компании</th>
+            <th>Имя клиента</th>
+            <th>Фамилия клиента</th>
+            <th>ID комнаты</th>
+            <th>Тип отзыва</th>
+            <th>Отзыв</th>
+
+        </tr>
+        {{#guests}}
+            <tr>
+
+                    <td>{{guestId}}</td>
+                    <td>{{reservationId}}</td>
+                    <td>{{companyName}}</td>
+                    <td>{{clientName}}</td>
+                    <td>{{clientSurname}}</td>
+                    <td>{{roomId}}</td>
+                    <td>{{reviewType}}</td>
+                    <td>{{guestReview}}</td>
+            </tr>
+        {{/guests}}
+    </table>
+</div>
+</body>
+</html>
