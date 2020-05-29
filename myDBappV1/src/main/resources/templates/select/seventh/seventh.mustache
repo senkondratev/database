@@ -1,0 +1,32 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="/static/myStyle.css">
+    <title>Выберите запрос</title>
+    <meta http-equiv="Content-Type" content="text/html; charseet=UTF-8" />
+
+</head>
+<body>
+
+<form method="get" action="/select">
+    <button type="submit">Back</button>
+</form>
+<form method="get" action="/select/seventhSelect">
+    <select name="companyId" required>
+        <option selected disabled value="">Выберите компанию по ID</option>
+        {{#companies}}
+            <option value={{companyId}}>{{companyId}} {{companyName}}</option>
+        {{/companies}}
+    </select><br>
+    Начало периода <input type="date" name="startDate" required><br>
+    Конец периода <input type="date" name="endDate" required><br>
+<button type="submit">Ok</button>
+</form>
+<br>
+Максимально число заказов: {{bestCount}}
+<br>
+Самые популярные комнаты: {{bestRooms}}
+
+
+</body>
+</html>
