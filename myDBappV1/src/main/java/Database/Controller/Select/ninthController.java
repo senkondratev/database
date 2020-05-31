@@ -28,9 +28,6 @@ public class ninthController {
         for (Room r: itRoom){
             Map<Integer, Integer> isCounted = new HashMap<>();
             List<Guest> guestList = guestRepository.findByRoom_RoomIdAndReservation_StartDateAfterAndReservation_EndDateBefore(r.getRoomId(), d1, d2);
-            System.out.println(r.getRoomId());
-            System.out.println(guestList.size());
-            System.out.println("----------------------------");
             if(guestList.size()>0){
                 for (Guest g: guestList){
                     if(!isCounted.containsKey(g.getReservationId())) {
