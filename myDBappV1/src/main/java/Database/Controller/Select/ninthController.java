@@ -39,8 +39,6 @@ public class ninthController {
 
                 }
                 myEntry m = new myEntry(r.getRoomId(), roomProfit);
-                System.out.println("здесь");
-                System.out.println(m.getProfit());
                 myEntries.add(m);
                 roomProfit = 0;
             }
