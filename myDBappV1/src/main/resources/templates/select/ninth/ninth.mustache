@@ -41,7 +41,22 @@
     <button type="submit">Reset</button>
 </form>
 <br>
-Прибыль от выбранных номеров - {{profit}}
+<br>
+<table>
+    <caption>Комнаты</caption>
+    <tr>
+        <th>ID комнаты</th>
+        <th>Принесенная прибыль</th>
+    </tr>
+    {{#money}}
+        <tr>
+            <td>{{roomId}}</td>
+            <td>{{profit}}</td>
+        </tr>
+    {{/money}}
+</table>
+
+
 </body>
 
 

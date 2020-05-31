@@ -10,10 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.sql.Date;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Controller
 public class ninthController {
@@ -23,8 +20,10 @@ public class ninthController {
     @Autowired
     private GuestRepository guestRepository;
 
-    private float getTotalProfit(List<Room> itRoom, Date d1, Date d2){
+    private void getTotalProfit(List<Room> itRoom, Date d1, Date d2, List<myEntry> myEntries){
         float profit = 0;
+        float roomProfit = 0;
+
         for (Room r: itRoom){
             Map<Integer, Integer> isCounted = new HashMap<>();
             List<Guest> guestList = guestRepository.findByRoom_RoomIdAndReservation_StartDateAfterAndReservation_EndDateBefore(r.getRoomId(), d1, d2);
@@ -34,17 +33,22 @@ public class ninthController {
                         Date start = g.getStartDate();
                         Date end = g.getEndDate();
                         profit += r.getRoomProfit() * ((end.getTime() - start.getTime()) / 86400000 + 1);
+                        roomProfit += r.getRoomProfit() * ((end.getTime() - start.getTime()) / 86400000 + 1);
                         isCounted.put(g.getReservationId(), 1);
                     }
+
                 }
+                myEntry m = new myEntry(r.getRoomId(), roomProfit);
+                System.out.println("здесь");
+                System.out.println(m.getProfit());
+                myEntries.add(m);
+                roomProfit = 0;
             }
         }
-        return profit;
     }
 
     @GetMapping("/select/ninth")
     public String ninth(Map<String, Object> model){
-        model.put("profit", "Параметры еще не выбраны");
         return "/select/ninth/ninth";
     }
 
@@ -106,8 +110,13 @@ public class ninthController {
         if((capacity==null)&&(floor==null)&&(profit!=null)&&(buildingId!=null)){
             rooms = roomRepository.findByRoomProfitAndBuilding_BuildingId(profit, buildingId);
         }
-        model.put("profit", getTotalProfit(rooms,d1,d2));
+        List<myEntry> myEntries = new ArrayList<>();
+        getTotalProfit(rooms,d1,d2,myEntries);
+        model.put("money", myEntries);
         return "/select/ninth/ninth";
+        //Кто такой myEntry и зачем он нужен: ранее попытался передавать Map<idкомнаты, прибыль> на усы, но чтобы пройти эту мапу,
+        // требовалось пройти по ее энтрисету  делая {{key}} {{value}}. Java ругалась на "illegal access" - он работал, но Java общела " в дальнейшем запретить" такой доступ
+        // чтобы обойти  варнинг, я сделал свой класс для вывода - по аналогии с Entity, где усы безо всяких ошибок осуществляли доступ к полям через геттеры.
     }
 
     @GetMapping("/select/ninthAddCapacity")
