@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="/static/myStyle.css">
+    <title>Второй запрос</title>
+    <meta http-equiv="Content-Type" content="text/html; charseet=UTF-8" />
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="/static/select/ninth/capacity.js"></script>
+    <script type="text/javascript" src="/static/select/ninth/floor.js"></script>
+    <script type="text/javascript" src="/static/select/ninth/profit.js"></script>
+    <script type="text/javascript" src="/static/select/ninth/building.js"></script>
+
+</head>
+
+<body>
+<div>
+    <form method="get" action="/select">
+        <button type="submit">Back</button>
+    </form>
+</div>
+
+<form method="get" action="/select/ninthSelect">
+    Начало периода:<input type="date" name="d1" required>
+    Окончание:<input type="date" name="d2" required>
+    <div  id="addCapacity">
+        <button type="button" id = "capacityButton">Добавить ограничение на вместимость</button>
+    </div>
+    <div  id="addFloor">
+        <button type="button" id = "floorButton">Добавить ограничение на этаж</button>
+    </div>
+    <div  id="addProfit">
+        <button type="button" id = "profitButton">Добавить ограничение на прибыль</button>
+    </div>
+    <div  id="addBuilding">
+        <button type="button" id = "buildingButton">Добавить ограничение на строение</button>
+    </div>
+
+    <button type="submit">ok</button>
+</form>
+<form method="get" action="/select/ninth">
+    <button type="submit">Reset</button>
+</form>
+<br>
+Прибыль от выбранных номеров - {{profit}}
+</body>
+
+
+</html>

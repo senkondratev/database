@@ -74,6 +74,9 @@ public class Guest {
     public Date getStartDate(){
         return reservation.getStartDate();
     }
+    public Date getEndDate(){
+        return reservation.getEndDate();
+    }
 
     //геттеры полей этого класса
     public String getGuestReview() {
