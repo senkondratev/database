@@ -35,6 +35,8 @@ public class Receipt {
     public int getServicePrice(){
         return  service.getServicePrice();
     }
+    public int getBuildingId(){return service.getBuildingId();}
+    public int getBuildingLevel(){return service.getBuildingLevel();}
 
 
     //геттеры полей этого класса

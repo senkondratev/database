@@ -52,18 +52,14 @@ public class tenthController {
             model.put("review", "Жалоб не поступало");
         }
 
-        List<Service> serviceList = new ArrayList<>();
-
         List<Receipt> receiptList = new ArrayList<>();
         receiptList = receiptRepository.findByGuest_GuestId(guestId);
-        for (Receipt receipt:receiptList){
-            serviceList.add(receipt.getService());
-        }
         double sum = 0.0;
-        for(Service s:serviceList){
-            sum+=s.getServicePrice();
+        for (Receipt receipt:receiptList){
+            sum+=receipt.getServicePrice();
         }
-        model.put("services", serviceList);
+
+        model.put("receipts", receiptList);
 
         model.put("money", String.valueOf(sum) + " -потраченные деньги на доп услуги");
 
