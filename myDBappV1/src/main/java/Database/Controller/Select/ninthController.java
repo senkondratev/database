@@ -20,7 +20,7 @@ public class ninthController {
     @Autowired
     private GuestRepository guestRepository;
 
-    private void getTotalProfit(List<Room> itRoom, Date d1, Date d2, List<myEntry> myEntries){
+    private void getTotalProfit(List<Room> itRoom, Date d1, Date d2, List<myEntryNinth> myEntries){
         float profit = 0;
         float roomProfit = 0;
 
@@ -38,7 +38,7 @@ public class ninthController {
                     }
 
                 }
-                myEntry m = new myEntry(r.getRoomId(), roomProfit);
+                myEntryNinth m = new myEntryNinth(r.getRoomId(), roomProfit);
                 myEntries.add(m);
                 roomProfit = 0;
             }
@@ -108,7 +108,7 @@ public class ninthController {
         if((capacity==null)&&(floor==null)&&(profit!=null)&&(buildingId!=null)){
             rooms = roomRepository.findByRoomProfitAndBuilding_BuildingId(profit, buildingId);
         }
-        List<myEntry> myEntries = new ArrayList<>();
+        List<myEntryNinth> myEntries = new ArrayList<>();
         getTotalProfit(rooms,d1,d2,myEntries);
         model.put("money", myEntries);
         return "/select/ninth/ninth";

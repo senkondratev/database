@@ -1,6 +1,6 @@
 package Database.Controller.Select;
 
-public class myEntry {
+public class myEntryNinth {
     private int roomId;
     private float profit;
     public int getRoomId(){
@@ -15,7 +15,7 @@ public class myEntry {
     public void setProfit(float f){
         profit = f;
     }
-    public myEntry(Integer i , Float f){
+    public myEntryNinth(Integer i , Float f){
         roomId = i;
         profit = f;
     }

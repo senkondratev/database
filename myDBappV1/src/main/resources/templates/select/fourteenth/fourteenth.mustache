@@ -1,0 +1,61 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="/static/myStyle.css">
+    <title>Четырнадцатый запрос</title>
+    <meta http-equiv="Content-Type" content="text/html; charseet=UTF-8" />
+
+</head>
+<body>
+
+<form method="get" action="/select">
+    <button type="submit">Back</button>
+</form>
+<br>
+
+<form action="/select/fourteenthSelect" method="get">
+    <select name="clientId" required>
+        <option disabled selected value="">Выберите клиента по ID и фамилии</option>
+        {{#clients}}
+            <option value={{clientId}}>{{clientId}} {{clientSurname}}</option>
+        {{/clients}}
+    </select>
+    <button type="submit">OK</button>
+</form>
+<br>
+{{count}}
+<table>
+    <caption>Номера и даты</caption>
+    <tr>
+        <th>ID номера</th>
+        <th>Начало брони</th>
+        <th>Конец брони</th>
+    </tr>
+    {{#roomsAndDates}}
+        <tr>
+            <td>{{roomId}}</td>
+            <td>{{startDate}}</td>
+            <td>{{endDate}}</td>
+        </tr>
+    {{/roomsAndDates}}
+</table>
+<br>
+<table>
+    <caption>Чеки</caption>
+    <tr>
+        <th>ID чека</th>
+        <th>ID гостя</th>
+        <th>Название услуги</th>
+        <th>Цена услуги</th>
+    </tr>
+    {{#receipts}}
+        <tr>
+            <td>{{receiptId}}</td>
+            <td>{{guestId}}</td>
+            <td>{{serviceName}}</td>
+            <td>{{servicePrice}}</td>
+        </tr>
+    {{/receipts}}
+</table>
+</body>
+</html>

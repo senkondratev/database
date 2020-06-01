@@ -58,4 +58,8 @@ public interface GuestRepository extends CrudRepository<Guest, Integer> {
 
     //десятый запрос
     public List<Guest> findByRoom_RoomId(int roomId);
+
+
+    //четырнадцатый запрос
+    public List<Guest> findByClient_ClientId(int clientId);
 }
