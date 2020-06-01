@@ -31,6 +31,11 @@ public class Receipt {
     public int getGuestId(){
         return guest.getGuestId();
     }
+    public int getServiceId(){return service.getServiceId();}
+    public int getServicePrice(){
+        return  service.getServicePrice();
+    }
+
 
     //геттеры полей этого класса
     public Service getService() {

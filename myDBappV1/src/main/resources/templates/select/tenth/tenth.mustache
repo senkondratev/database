@@ -1,0 +1,55 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="/static/myStyle.css">
+    <title>Десятый запрос</title>
+    <meta http-equiv="Content-Type" content="text/html; charseet=UTF-8" />
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="/static/select/tenth/guestValidate.js"></script>
+
+</head>
+<body>
+<form method="get" action="/select">
+    <button type="submit">Back</button>
+</form>
+<br>
+<form action="/select/tenthSelect" method="get">
+    <select id="roomSelect" required name="roomId">
+        <option selected disabled value="" >Выберите комнату</option>
+        {{#rooms}}
+            <option value={{roomId}}>{{roomId}}</option>
+        {{/rooms}}
+    </select>
+    <select required id="guestSelect" name="guestId">
+        <option selected disabled value="">Сначала выберите комнату</option>
+    </select>
+
+    <button type="submit">OK</button>
+</form>
+<br>
+{{review}}<br>
+{{money}}<br>
+<table>
+    <caption>Услуги</caption>
+    <tr>
+        <th>ID услуги</th>
+        <th>ID здания</th>
+        <th>Число звезд злания</th>
+        <th>Цена услуги</th>
+        <th>Название услуги</th>
+    </tr>
+    {{#services}}
+        <tr>
+            <td>{{serviceId}}</td>
+            <td>{{buildingId}}</td>
+            <td>{{buildingLevel}}</td>
+            <td>{{servicePrice}}</td>
+            <td>{{serviceName}}</td>
+        </tr>
+    {{/services}}
+</table>
+
+
+
+</body>
+</html>
