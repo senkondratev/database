@@ -1,0 +1,41 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="/static/myStyle.css">
+    <title>Тринадцатый запрос</title>
+    <meta http-equiv="Content-Type" content="text/html; charseet=UTF-8" />
+
+</head>
+<body>
+
+<form method="get" action="/select">
+    <button type="submit">Back</button>
+</form>
+<br>
+{{status}}
+<br>
+<form method="get" action="/select/thirteenthSelect">
+    Начало периода:<input type="date" name="d1" required>
+    Окончание:<input type="date" name="d2" required>
+    <button type="submit">ok</button>
+</form>
+<br>
+<table>
+    <caption>Клиенты</caption>
+    <tr>
+        <th>ID</th>
+        <th>Имя</th>
+        <th>Фамилия</th>
+        <th>Первое появление</th>
+    </tr>
+    {{#clients}}
+        <tr>
+            <td>{{clientId}}</td>
+            <td>{{clientName}}</td>
+            <td>{{clientSurname}}</td>
+            <td>{{firstAppearance}}</td>
+        </tr>
+    {{/clients}}
+</table>
+</body>
+</html>
