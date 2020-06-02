@@ -30,6 +30,25 @@
             <button type="submit">ok</button>
         </form>
     </div>
+<br>
+А еще вы можете отсортировать значения в таблице по выбранному атрибуту
+<form method="get" action="/insert/roomSort">
+    <select name="attribute" required>
+        <option selected disabled value="">Выберите атрибут</option>
+        <option value="roomId">ID комнаты</option>
+        <option value="Building_BuildingId">ID здания</option>
+        <option value="roomProfit">Прибыль в день</option>
+        <option value="roomFloor">Этаж</option>
+        <option value="roomCapacity">Вместимость номера</option>
+    </select>
+    <select name="sort" required>
+        <option selected disabled>Выберите тип сортировки</option>
+        <option value="0">ASC</option>
+        <option value="1">DESC</option>
+    </select>
+    <button type="submit">Ok</button>
+</form>
+<br>
 <div id="table">
     <table>
         <caption>Комнаты</caption>

@@ -1,6 +1,7 @@
 package Database.Repository;
 
 import Database.Domain.Room;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;
@@ -27,4 +28,6 @@ public interface RoomRepository extends CrudRepository<Room, Integer> {
     public List<Room> findByBuilding_BuildingId(int buildingId);
     public List<Room> findByRoomProfit(int profit);
     public List<Room> findByRoomProfitAndBuilding_BuildingId(int profit, int buildingId);
+
+    public List<Room> findAll(Sort by);
 }

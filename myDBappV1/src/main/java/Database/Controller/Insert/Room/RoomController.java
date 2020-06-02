@@ -5,11 +5,13 @@ import Database.Domain.Room;
 import Database.Repository.BuildingRepository;
 import Database.Repository.RoomRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -71,4 +73,21 @@ public class RoomController {
 
         return "/insert/room/roomDelete";
     }
+
+    @GetMapping("/insert/roomSort")
+    public String roomSort(@RequestParam String attribute,
+                           @RequestParam int sort,
+                           Map<String, Object> model){
+        Sort.Direction s;
+        if(sort==0){
+            s=Sort.Direction.ASC;
+        }
+        else{
+            s=Sort.Direction.DESC;
+        }
+        List<Room> roomList =  roomRepository.findAll(Sort.by(s,attribute));
+        model.put("rooms", roomList);
+        return "/insert/room/room";
+    }
+
 }
