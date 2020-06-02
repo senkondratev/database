@@ -80,6 +80,7 @@ public class Guest {
     public int getCompanyId(){
         return company.getCompanyId();
     }
+    public int getClientId(){return client.getClientID();}
 
     //геттеры полей этого класса
     public String getGuestReview() {

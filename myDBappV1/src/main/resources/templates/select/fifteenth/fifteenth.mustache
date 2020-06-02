@@ -1,0 +1,53 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="/static/myStyle.css">
+    <title>Пятнадцатый запрос</title>
+    <meta http-equiv="Content-Type" content="text/html; charseet=UTF-8" />
+
+</head>
+<body>
+
+<form method="get" action="/select">
+    <button type="submit">Back</button>
+</form>
+<br>
+<form method="get" action="/select/fifteenthSelect">
+    <select name="roomId" required>
+        <option selected disabled value="">Выберите номер по ID</option>
+        {{#rooms}}
+            <option value={{roomId}}>{{roomId}}</option>
+        {{/rooms}}
+    </select>
+    Начало периода:<input type="date" name="d1" required>
+    Окончание:<input type="date" name="d2" required>
+    <button type="submit">ok</button>
+</form>
+<br>
+<table>
+    <caption>Посещавшие номер</caption>
+    <tr>
+        <th>ID гостя</th>
+        <th>Начало брони</th>
+        <th>Конец брони</th>
+        <th>ID клиента</th>
+        <th>Имя клиента</th>
+        <th>Фамилия клиента</th>
+    </tr>
+    {{#guests}}
+        <tr>
+            <td>{{guestId}}</td>
+            <td>{{startDate}}</td>
+            <td>{{endDate}}</td>
+            <td>{{clientId}}</td>
+            <td>{{clientName}}</td>
+            <td>{{clientSurname}}</td>
+        </tr>
+    {{/guests}}
+</table>
+
+
+
+
+</body>
+</html>
