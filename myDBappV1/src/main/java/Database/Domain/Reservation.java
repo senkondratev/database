@@ -7,6 +7,7 @@ import javax.persistence.*;
 import java.sql.Date;
 import java.util.List;
 
+
 @Entity
 public class Reservation {
     @Id
@@ -23,6 +24,7 @@ public class Reservation {
 
     private Date startDate;
     private Date endDate;
+
 
     public Reservation() {
     }
