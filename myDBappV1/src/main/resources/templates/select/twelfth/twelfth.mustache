@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="/static/myStyle.css">
+    <title>Двенадцатый запрос</title>
+    <meta http-equiv="Content-Type" content="text/html; charseet=UTF-8" />
+
+</head>
+<body>
+
+<form method="get" action="/select">
+    <button type="submit">Back</button>
+</form>
+<form method="get" action="/select/twelfthSelect" >
+    <select name="buildingId">
+        <option selected disabled value="">Выберите корпус по ID, если нужно</option>
+        {{#buildings}}
+            <option value="{{buildingId}}">{{buildingId}}</option>
+        {{/buildings}}
+    </select>
+    <button type="submit">ok</button>
+</form>
+<br>
+{{status}}
+<br>
+<table>
+    <caption>Клиенты</caption>
+    <tr>
+        <th>ID</th>
+        <th>Имя</th>
+        <th>Фамилия</th>
+        <th>Первое появление</th>
+    </tr>
+    {{#clients}}
+        <tr>
+            <td>{{clientId}}</td>
+            <td>{{clientName}}</td>
+            <td>{{clientSurname}}</td>
+            <td>{{firstAppearance}}</td>
+        </tr>
+    {{/clients}}
+</table>
+
+
+
+
+</body>
+</html>
