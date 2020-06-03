@@ -1,4 +1,4 @@
-package Database.Controller.Insert.Room;
+package Database.Controller.Insert;
 
 import Database.Domain.Building;
 import Database.Domain.Room;

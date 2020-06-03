@@ -39,36 +39,38 @@ public class seventhController {
                                 @RequestParam Date startDate,
                                 @RequestParam Date endDate,
                                 Map<String, Object> model){
-        List<Guest> guestList = guestRepository.findByCompany_CompanyIdAndReservation_StartDateAfterAndReservation_EndDateBefore(companyId,startDate,endDate);
-        Map<Integer, Integer> roomPopularity = new HashMap<>();
-        for (Guest g: guestList){
-            if(roomPopularity.get(g.getRoomId())!=null){
-                roomPopularity.put(g.getRoomId(),roomPopularity.get(g.getRoomId())+1);
+        if(startDate.before(endDate)) {
+            List<Guest> guestList = guestRepository.findByCompany_CompanyIdAndReservation_StartDateAfterAndReservation_EndDateBefore(companyId, startDate, endDate);
+            Map<Integer, Integer> roomPopularity = new HashMap<>();
+            for (Guest g : guestList) {
+                if (roomPopularity.get(g.getRoomId()) != null) {
+                    roomPopularity.put(g.getRoomId(), roomPopularity.get(g.getRoomId()) + 1);
+                } else {
+                    roomPopularity.put(g.getRoomId(), 1);
+                }
             }
-            else {
-                roomPopularity.put(g.getRoomId(),1);
+            int max = 1;
+            List<Integer> mostPopular = new ArrayList<>();
+            for (Integer key : roomPopularity.keySet()) {
+                if (roomPopularity.get(key) > max) {
+                    max = roomPopularity.get(key);
+                    mostPopular.clear();
+                    mostPopular.add(key);
+                } else if (roomPopularity.get(key) == max) {
+                    mostPopular.add(key);
+                }
             }
-        }
-        int max = 1;
-        List<Integer> mostPopular = new ArrayList<>();
-        for (Integer key:roomPopularity.keySet()){
-            if(roomPopularity.get(key)>max){
-                max = roomPopularity.get(key);
-                mostPopular.clear();
-                mostPopular.add(key);
+            model.put("bestCount", max);
+            if (max != 1) {
+                model.put("bestRooms", mostPopular);
+            } else {
+                model.put("bestRooms", "Все комнаты были заказаны единожды");
             }
-            else if(roomPopularity.get(key)==max){
-                mostPopular.add(key);
-            }
-        }
-        model.put("bestCount", max);
-        if(max!=1){
-            model.put("bestRooms", mostPopular);
         }
         else{
-            model.put("bestRooms", "Все комнаты были заказаны единожды");
+            model.put("bestCount", "Вы перепутали даты");
+            model.put("bestRooms", "А ведь даты перепутаны...");
         }
-
 
 
 

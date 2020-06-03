@@ -1,4 +1,4 @@
-package Database.Controller.Insert.Bonus;
+package Database.Controller.Insert;
 
 import Database.Domain.Bonus;
 import Database.Domain.Contract;

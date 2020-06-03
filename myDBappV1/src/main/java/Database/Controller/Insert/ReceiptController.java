@@ -1,4 +1,4 @@
-package Database.Controller.Insert.Receipt;
+package Database.Controller.Insert;
 
 import Database.Domain.Guest;
 import Database.Domain.Receipt;

@@ -1,4 +1,4 @@
-package Database.Controller.Insert.Reservation;
+package Database.Controller.Insert;
 
 import Database.Domain.Building;
 import Database.Domain.Reservation;

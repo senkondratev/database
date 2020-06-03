@@ -1,4 +1,4 @@
-package Database.Controller.Insert.Client;
+package Database.Controller.Insert;
 
 import Database.Domain.Client;
 import Database.Repository.ClientRepository;

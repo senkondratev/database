@@ -1,4 +1,4 @@
-package Database.Controller.Insert.Service;
+package Database.Controller.Insert;
 
 
 import Database.Domain.Building;

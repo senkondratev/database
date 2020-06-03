@@ -1,4 +1,4 @@
-package Database.Controller.Insert.Guest;
+package Database.Controller.Insert;
 
 import Database.Domain.*;
 import Database.Repository.*;

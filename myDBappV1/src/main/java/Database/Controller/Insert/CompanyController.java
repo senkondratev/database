@@ -1,4 +1,4 @@
-package Database.Controller.Insert.Company;
+package Database.Controller.Insert;
 
 import Database.Domain.Company;
 import Database.Repository.CompanyRepository;
